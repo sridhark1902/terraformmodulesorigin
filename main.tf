@@ -14,13 +14,13 @@ resource "aws_vpc" "default" {
     }
 }
 
-terraform {
-backend "s3" {
-bucket = "sripallavi0011"
-region = "us-east-1"
-key = "terraform11.state"
-}
-}
+# terraform {
+# backend "s3" {
+# bucket = "sripallavi0011"
+# region = "us-east-1"
+# key = "terraform11.state"
+# }
+# }
 
 
 
@@ -122,26 +122,26 @@ resource "aws_security_group" "allow_all" {
 #}
 
 
-#resource "aws_instance" "web-1" {
-#    #ami = "${data.aws_ami.my_ami.id}"
-#     ami = "ami-08bc77a2c7eb2b1da"
-#     availability_zone = "us-east-1a"
-#     instance_type = "t2.micro"
-#     key_name = "laptop"
-#    subnet_id = "${aws_subnet.subnet1-public.id}"
-#     vpc_security_group_ids = ["${aws_security_group.allow_all.id}"]
-#     associate_public_ip_address = true	
-#     user_data = <<-EOF
-##!/bin/bash
-#apt-get update
-#apt-get install nginx -y
-#EOF
-#     tags = {
-#         Name = "Server-1"
-#         Env = "Prod"
-#         Owner = "Sree"
-#     }
-# }
+resource "aws_instance" "web-1" {
+   #ami = "${data.aws_ami.my_ami.id}"
+    ami = "ami-08bc77a2c7eb2b1da"
+    availability_zone = "us-east-1a"
+    instance_type = "t2.micro"
+    key_name = "laptop"
+   subnet_id = "${aws_subnet.subnet1-public.id}"
+    vpc_security_group_ids = ["${aws_security_group.allow_all.id}"]
+    associate_public_ip_address = true	
+    user_data = <<-EOF
+#!/bin/bash
+apt-get update
+apt-get install nginx -y
+EOF
+    tags = {
+        Name = "Server-1"
+        Env = "Prod"
+        Owner = "Sree"
+    }
+}
 
 #output "ami_id" {
 #  value = "${data.aws_ami.my_ami.id}"
